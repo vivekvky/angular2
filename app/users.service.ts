@@ -14,4 +14,14 @@ export class UserService {
             .map(data => data.json())
     }
 
+    addUser(posts) {
+        return this._http.post(this.url, posts)
+            .map(data => data.json());
+    }
+
+    getByUser(id) {
+        return this._http.get(this.url + "/" + id)
+            .map(data => data.json());
+    }
+
 }

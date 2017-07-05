@@ -5,11 +5,13 @@ import { NavbarComponent, } from './navbar.component';
 import { UserComponent } from './users.component'
 import { PostComponent } from './posts.component'
 import { HomeComponent } from './home.component'
+import { NewUserComponent } from './newuser.component'
 
 
 @RouteConfig([
     { path: '/', name: 'Home', component: HomeComponent, useAsDefault: true },
     { path: '/users', name: 'Users', component: UserComponent },
+    { path: '/users/newuser', name: 'NewUser', component: NewUserComponent },
     { path: '/posts', name: 'Posts', component: PostComponent },
     { path: '/*other', name: 'Other', redirectTo: ['Users'] }
 ])
@@ -21,7 +23,7 @@ import { HomeComponent } from './home.component'
     <router-outlet></router-outlet>
     </div>
     `,
-    directives: [NavbarComponent,ROUTER_DIRECTIVES]
+    directives: [NavbarComponent, ROUTER_DIRECTIVES]
 })
 
 
