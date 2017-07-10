@@ -6,6 +6,7 @@ import {AlbumComponent} from './album.component'
 import {ContactComponent} from './contact.component'
 
 
+
 @RouteConfig([
     {path:'/albums',name:'Albums',component:AlbumsComponent,useAsDefault:true},
     {path:'/albums/:id',name:'Album',component:AlbumComponent},

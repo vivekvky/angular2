@@ -1,11 +1,11 @@
 import { Component } from 'angular2/core'
-import { ROUTER_DIRECTIVES,RouterLink,Router } from 'angular2/router'
+import { ROUTER_DIRECTIVES,Router } from 'angular2/router'
 
 
 @Component({
     selector: 'nav-bar',
     templateUrl: '/app/nav-bar.html',
-    directives: [ROUTER_DIRECTIVES,RouterLink]
+    directives: [ROUTER_DIRECTIVES]
 })
 
 

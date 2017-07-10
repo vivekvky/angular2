@@ -1,4 +1,6 @@
 <h1>Users</h1>
+<spinner [visible]="isLoading"></spinner>
+<div *ngIf="!isLoading">
 <a class="btn btn-primary" [routerLink]="['NewUser']">New User</a>
 <table class="table table-border">
     <tr>
@@ -11,8 +13,9 @@
         <tr>
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
-            <td><i class="glyphicon glyphicon-edit"></i></td>
-            <td><i class="glyphicon glyphicon-remove"></i></td>
+            <td><a [routerLink]="['EditUser',{id:user.id}]"><i class="glyphicon glyphicon-edit"></i></a></td>
+            <td><i class="glyphicon glyphicon-remove" (click)="deleteUser(user.id)"z></i></td>
         </tr>
     </tbody>
 </table>
+</div>

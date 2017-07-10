@@ -3,18 +3,20 @@ import { CanDeactivate, Router, RouteParams } from 'angular2/router';
 import { ControlGroup, FormBuilder, Validators } from 'angular2/common';
 import { CustomValidation } from './customvalidation'
 import { UserService } from './users.service'
+import { user } from "./properties.interface";
+import { SpinnerComponent } from "./spinner.component";
 
 @Component({
     templateUrl: '/app/newuser.html',
-    providers: [UserService]
+    providers: [UserService],
+    directives:[SpinnerComponent]
 })
 
 export class NewUserComponent implements OnInit, CanDeactivate {
+    isLoading: boolean;
     asdf: any;
     data: any;
-    user = {
-        address: {}
-    };
+    user = new user()
     title;
     id
     form: ControlGroup;
@@ -43,6 +45,7 @@ export class NewUserComponent implements OnInit, CanDeactivate {
     }
 
     ngOnInit() {
+
         this.id = this._routeParams.get("id");
         this.title = this.id ? "Edit" : "New";
 
@@ -50,21 +53,40 @@ export class NewUserComponent implements OnInit, CanDeactivate {
             return
         }
         else {
+            this.isLoading = true;
             this._userservice.getByUser(this.id)
-                .subscribe(data => {
-                    this.user = data.data
-                })
+            
+                .subscribe(user => {
+                this.isLoading = false
+                this.user = user
+            },
+                response => {
+                    if (response.status == 404) {
+                        this._router.navigate(['NotFound']);
+                    }
+                });
+
         }
 
 
     }
 
-    onSubmit(posts) {
-        this._userservice.addUser(posts)
-            .subscribe(data => {
-                console.log(data)
-                this.asdf = data;
-            })
+    onSubmit() {
+        if (this.id) {
+            this._userservice.updateUser(this.id, this.user)
+                .subscribe(data => {
+                    console.log(data)
+                    this.asdf = data
+                })
+        }
+        else {
+            this._userservice.addUser(this.user)
+                .subscribe(data => {
+                    console.log(data)
+                    this.asdf = data
+                })
+        }
+
 
 
         //this._router.navigate(["Posts"]);

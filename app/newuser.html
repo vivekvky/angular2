@@ -1,48 +1,52 @@
-<h1>{{title}} user</h1>
-<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
-    <fieldset>
-        <legend>User</legend>
-        <div class="form-group">
-            <label for="username">Name</label>
-            <input id="username"  type="text" [(ngModel)]="user.name" class="form-control" ngControl="username" #username="ngForm">
-            <div class="alert alert-danger" *ngIf="username.touched && username.errors">
-                <div *ngIf="username.errors.required">It is Mandatory</div>
+
+    <h1>{{title}} user</h1>
+   <spinner [visible]="isLoading"></spinner>
+<div *ngIf="!isLoading">
+    <form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <legend>User</legend>
+            <div class="form-group">
+                <label for="username">Name</label>
+                <input id="username" type="text" [(ngModel)]="user.name" class="form-control" ngControl="username" #username="ngForm">
+                <div class="alert alert-danger" *ngIf="username.touched && username.errors">
+                    <div *ngIf="username.errors.required">It is Mandatory</div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" id="email" [(ngModel)]="user.email" class="form-control" ngControl="email" #email="ngForm">
-            <div class="alert alert-danger" *ngIf="email.touched && email.errors">
-                <div *ngIf="email.errors.required">It is Mandatory</div>
-                <div *ngIf="email.errors.invalidemail">Email is invalid</div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" [(ngModel)]="user.email" class="form-control" ngControl="email" #email="ngForm">
+                <div class="alert alert-danger" *ngIf="email.touched && email.errors">
+                    <div *ngIf="email.errors.required">It is Mandatory</div>
+                    <div *ngIf="email.errors.invalidemail">Email is invalid</div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="mobile">Phone</label>
-            <input type="number" id="mobile" [(ngModel)]="user.mobile" class="form-control" ngControl="mobile" #mobile="ngForm">
-            <div class="alert alert-danger" *ngIf="mobile.touched && mobile.errors">
-                <div *ngIf="mobile.errors.required">It is Mandatory</div>
+            <div class="form-group">
+                <label for="mobile">Phone</label>
+                <input type="text" id="mobile" [(ngModel)]="user.phone" class="form-control" ngControl="mobile" #mobile="ngForm">
+                <div class="alert alert-danger" *ngIf="mobile.touched && mobile.errors">
+                    <div *ngIf="mobile.errors.required">It is Mandatory</div>
+                </div>
             </div>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Address</legend>
-        <div class="form-group">
-            <label for="Street">Street</label>
-            <input id="Street" type="text" [(ngModel)]="user.address.street" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="Suit">Suit</label>
-            <input type="email" id="Suit" [(ngModel)]="user.address.suit" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="City">City</label>
-            <input type="number" id="City" [(ngModel)]="user.address.city" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="zip">ZipCode</label>
-            <input type="number" id="zip" [(ngModel)]="user.address.zip" class="form-control">
-        </div>
-    </fieldset>
-    <button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
-</form>
+        </fieldset>
+        <fieldset>
+            <legend>Address</legend>
+            <div class="form-group">
+                <label for="Street">Street</label>
+                <input id="Street" type="text" [(ngModel)]="user.address.street" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Suit">Suit</label>
+                <input type="text" id="Suit" [(ngModel)]="user.address.suite" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="City">City</label>
+                <input type="text" id="City" [(ngModel)]="user.address.city" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="zip">ZipCode</label>
+                <input type="text" id="zip" [(ngModel)]="user.address.zipcode" class="form-control">
+            </div>
+        </fieldset>
+        <button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
