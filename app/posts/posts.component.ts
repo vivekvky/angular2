@@ -1,9 +1,9 @@
 import { Component, OnInit } from 'angular2/core';
-import { UserService } from './users.service';
-import { SpinnerComponent } from "./spinner.component";
+import { UserService } from '../user/users.service';
+import { SpinnerComponent } from "../shared/spinner.component";
 
 @Component({
-    templateUrl: '/app/posts.html',
+    templateUrl: '/app/posts/posts.html',
     providers: [UserService],
     directives: [SpinnerComponent]
 
@@ -12,7 +12,6 @@ export class PostComponent implements OnInit {
     commentLoading: any;
     currentPost: any;
     isLoading: boolean;
-
     Posts: any;
 
     constructor(private _userservice: UserService) {
@@ -20,6 +19,7 @@ export class PostComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.currentPost = [];
         this.isLoading = true;
         this._userservice.getPosts()
             .subscribe(posts => {
@@ -29,22 +29,13 @@ export class PostComponent implements OnInit {
     }
 
     select(post) {
-        this.isLoading = true
-        this.commentLoading = post;
-
+        this.currentPost = post;
+        this.commentLoading = true;
         this._userservice.getComments(post.id)
             .subscribe(comments => {
                 this.currentPost.comments = comments
                 this.commentLoading = false;
             });
-    }
-
-    change(id){
-        this._userservice.getFilerdComments(id)
-             .subscribe(posts => {
-                this.Posts = posts
-                this.isLoading = false;
-            })
     }
 
 }

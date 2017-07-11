@@ -1,9 +1,9 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES,RouteConfig} from 'angular2/router'
 
-import {AlbumsComponent} from './albums.component'
-import {AlbumComponent} from './album.component'
-import {ContactComponent} from './contact.component'
+import {AlbumsComponent} from '../app/shared/albums.component'
+import {AlbumComponent} from '../app/shared/album.component'
+import {ContactComponent} from '../app/shared/contact.component'
 
 
 

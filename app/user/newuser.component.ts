@@ -1,13 +1,13 @@
 import { Component, OnInit } from 'angular2/core';
 import { CanDeactivate, Router, RouteParams } from 'angular2/router';
 import { ControlGroup, FormBuilder, Validators } from 'angular2/common';
-import { CustomValidation } from './customvalidation'
+import { CustomValidation } from '../shared/customvalidation'
 import { UserService } from './users.service'
 import { user } from "./properties.interface";
-import { SpinnerComponent } from "./spinner.component";
+import { SpinnerComponent } from "../shared/spinner.component";
 
 @Component({
-    templateUrl: '/app/newuser.html',
+    templateUrl: '/app/user/newuser.html',
     providers: [UserService],
     directives:[SpinnerComponent]
 })
